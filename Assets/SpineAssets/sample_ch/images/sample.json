@@ -1,0 +1,56 @@
+{ "skeleton": { "images": "C:/Users/kiMella/Desktop/게임제작/InGame/포토샵 작업/images/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "head", "bone": "root", "attachment": "head" },
+	{ "name": "tourso", "bone": "root", "attachment": "tourso" },
+	{ "name": "leg1", "bone": "root", "attachment": "leg1" },
+	{ "name": "leg1_2", "bone": "root", "attachment": "leg1_2" },
+	{ "name": "leg2", "bone": "root", "attachment": "leg2" },
+	{ "name": "leg2_2", "bone": "root", "attachment": "leg2_2" },
+	{ "name": "arm1", "bone": "root", "attachment": "arm1" },
+	{ "name": "arm1_2", "bone": "root", "attachment": "arm1_2" },
+	{ "name": "arm2", "bone": "root", "attachment": "arm2" },
+	{ "name": "arm2_2", "bone": "root", "attachment": "arm2_2" },
+	{ "name": "gun", "bone": "root", "attachment": "gun" }
+],
+"skins": {
+	"default": {
+		"head": {
+			"head": { "x": 1220.5, "y": -269, "width": 123, "height": 136 }
+		},
+		"tourso": {
+			"tourso": { "x": 1230, "y": -447.5, "width": 156, "height": 255 }
+		},
+		"leg1": {
+			"leg1": { "x": 1268.5, "y": -640, "width": 67, "height": 134 }
+		},
+		"leg1_2": {
+			"leg1_2": { "x": 1268.5, "y": -785, "width": 67, "height": 172 }
+		},
+		"leg2": {
+			"leg2": { "x": 1182, "y": -639.5, "width": 62, "height": 135 }
+		},
+		"leg2_2": {
+			"leg2_2": { "x": 1182, "y": -786, "width": 62, "height": 164 }
+		},
+		"arm1": {
+			"arm1": { "x": 1336.5, "y": -409, "width": 109, "height": 146 }
+		},
+		"arm1_2": {
+			"arm1_2": { "x": 1333.5, "y": -506.5, "width": 147, "height": 131 }
+		},
+		"arm2": {
+			"arm2": { "x": 1140.5, "y": -431.5, "width": 105, "height": 151 }
+		},
+		"arm2_2": {
+			"arm2_2": { "x": 1051.5, "y": -498, "width": 157, "height": 56 }
+		},
+		"gun": {
+			"gun": { "x": 1153.5, "y": -541.5, "width": 581, "height": 199 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}
