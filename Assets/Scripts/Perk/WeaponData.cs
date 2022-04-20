@@ -10,10 +10,13 @@ public class WeaponData : ScriptableObject
     public int magazineSize;
     public int suppliedAmmo;
 
-    // ÇÑ ¹ø¿¡ ¹ß»ç °¡´ÉÇÑ Åº¼ö
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Åºï¿½ï¿½
     public int shotCount;
 
     public Vector2 damageRange;
+
+    public Vector2 spreadRange;
+    public AnimationCurve spreadThreshold;
 
     public float shotDelay;
     public float reloadDelay;
@@ -26,6 +29,10 @@ public class WeaponData : ScriptableObject
         data.shotCount = this.shotCount;
 
         data.damageRange = this.damageRange;
+
+        data.spreadRange = this.spreadRange;
+
+        data.spreadThreshold = new AnimationCurve(this.spreadThreshold.keys);
 
         data.shotDelay = this.shotDelay;
         data.reloadDelay = this.reloadDelay;

@@ -5,36 +5,59 @@ using UnityEngine;
 
 public class WeaponGun : Weapon
 {
-    public WeaponGun(ID id) : base(id) { }
+    public WeaponGun(int slotIndex, ID id) : base(slotIndex, id) { }
 
-    public override async void Attack(GameObject self)
+    public UnityEngine.Events.UnityEvent<GameObject> onAttackEvent, onBeginReloadEvent, onEndReloadEvent;
+
+    public override async void AttackLogic(GameObject self)
     {
         if (!CanUse) return;
 
         if (CurrentAmmo == 0)
         {
             if (!CanReload) return;
-            Reload(self);
+            ReloadLogic(self);
             return;
         }
 
-        Debug.Log($"{id}: Shot!");
+        OnAttack(self);
         CurrentAmmo = Mathf.Max(CurrentAmmo - Data.shotCount, 0);
+
+        lastUse = Time.realtimeSinceStartup;
 
         shotTrigger = true;
         await Task.Delay((int)(Data.shotDelay * 1000));
         shotTrigger = false;
     }
 
-    public override async void Reload(GameObject self)
+    public override async void ReloadLogic(GameObject self)
     {
-        Debug.Log("Reloading...");
+        OnBeginReload(self);
+
         reloadTrigger = true;
         await Task.Delay((int)(Data.reloadDelay * 1000));
         reloadTrigger = false;
-        int newMag = Data.suppliedAmmo - Data.magazineSize < 0 ? Data.suppliedAmmo : Data.magazineSize;
+
+        int newMag = SuppliedAmmo - Data.magazineSize < 0 ? SuppliedAmmo : Data.magazineSize;
         CurrentAmmo = newMag;
-        Data.suppliedAmmo = Mathf.Max(Data.suppliedAmmo - Data.magazineSize, 0);
-        Debug.Log("Done Reloading");
+        SuppliedAmmo = Mathf.Max(SuppliedAmmo - Data.magazineSize, 0);
+
+        OnEndReload(self);
+    }
+
+
+    protected virtual void OnAttack(GameObject self)
+    {
+        onAttackEvent?.Invoke(self);
+    }
+
+    protected virtual void OnBeginReload(GameObject self)
+    {
+        onBeginReloadEvent?.Invoke(self);
+    }
+
+    protected virtual void OnEndReload(GameObject self)
+    {
+        onEndReloadEvent?.Invoke(self);
     }
 }

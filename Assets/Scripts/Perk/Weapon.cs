@@ -15,19 +15,26 @@ public abstract class Weapon : IUpdate
     }
 
     public ID id;
+    public int slotIndex;
 
     public int CurrentAmmo { get; protected set; }
+    public int SuppliedAmmo { get; protected set; }
 
     public WeaponData Data { get; protected set; } = new WeaponData();
 
     protected bool shotTrigger = false;
     protected bool reloadTrigger = false;
+
+    protected float lastUse = -1F;
+
     public virtual bool CanUse => !shotTrigger;
     public virtual bool CanReload => CurrentAmmo != Data.magazineSize && Data.suppliedAmmo > 0 && !reloadTrigger;
+    public bool IsReloading => reloadTrigger;
 
 
-    public Weapon(ID id)
+    public Weapon(int slotIndex, ID id)
     {
+        this.slotIndex = slotIndex;
         this.id = id;
         ResetData();
     }
@@ -35,12 +42,14 @@ public abstract class Weapon : IUpdate
 
     public void ResetData()
     {
-        WeaponDataLoader.Instance.Get(id).CopyTo(Data);
+        Data = WeaponDataLoader.Instance.Get(id);//.CopyTo(Data);
+
         CurrentAmmo = Data.magazineSize;
+        SuppliedAmmo = Data.suppliedAmmo;
     }
 
-    public abstract void Attack(GameObject self);
-    public abstract void Reload(GameObject self);
+    public abstract void AttackLogic(GameObject self);
+    public abstract void ReloadLogic(GameObject self);
 
     public virtual void OnFixedUpdate(float fdt)
     {

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-// ¼ÒÃÑ, ±â°ü´ÜÃÑ, ±ÇÃÑ, »êÅºÃÑ, Àú°ÝÃÑ, ±ÙÁ¢·ù
-// °¢ ÆÛÅ©´Â ÆÐ½Ãºê ½ºÅ³ ÀÖÀ½
-// ÁÖ¹«±â, º¸Á¶¹«±â, ±ÙÁ¢¹«±â, ÅõÃ´¹«±â, Æ¯¼ö¹«±â, È¸ÇÇ±â
+// ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Åºï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½Ð½Ãºï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½
+// ï¿½Ö¹ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½, Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, È¸ï¿½Ç±ï¿½
 
+// ï¿½Ñ¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ ï¿½ï¿½.
 
 public interface IUpdate
 {
@@ -36,14 +38,24 @@ public abstract class Perk
 
         CurrentWeapon = weapon;
     }
+    public void EquipWeapon(int slot)
+    {
+        foreach (var weapon in weapons)
+        {
+            if (weapon.Value.slotIndex != slot) continue;
+            CurrentWeapon = weapon.Value;
+            return;
+        }
+    }
 
     public void Use(GameObject self)
     {
-        CurrentWeapon?.Attack(self);
+        CurrentWeapon?.AttackLogic(self);
     }
 
     public void Update(float dt)
     {
+        if (ReferenceEquals(CurrentWeapon, null)) EquipWeapon(0);
         foreach (var weapon in weapons)
         {
             weapon.Value.OnUpdate(dt);
@@ -56,9 +68,9 @@ public class PerkAssertRifle : Perk
 {
     protected override Dictionary<Weapon.ID, Weapon> weapons { get; } = new Dictionary<Weapon.ID, Weapon>()
     {
-        { Weapon.ID.AssertRifle1, new WeaponGun(Weapon.ID.AssertRifle1) },
-        { Weapon.ID.AssertRifle2, new WeaponGun(Weapon.ID.AssertRifle2) },
-        { Weapon.ID.AssertRifle3, new WeaponGun(Weapon.ID.AssertRifle3) },
+        { Weapon.ID.AssertRifle1, new WeaponGunTest(0, Weapon.ID.AssertRifle1) },
+        { Weapon.ID.AssertRifle2, new WeaponGunTest(1, Weapon.ID.AssertRifle2) },
+        { Weapon.ID.AssertRifle3, new WeaponGunTest(2, Weapon.ID.AssertRifle3) }
     };
 
     public override void OnEquiped()
@@ -76,7 +88,7 @@ public class PerkSniperRifle : Perk
 {
     protected override Dictionary<Weapon.ID, Weapon> weapons { get; } = new Dictionary<Weapon.ID, Weapon>()
     {
-        { Weapon.ID.SniperRifle1, new WeaponGun(Weapon.ID.SniperRifle1) }
+        { Weapon.ID.SniperRifle1, new WeaponGun(0, Weapon.ID.SniperRifle1) }
     };
 
     public override void OnEquiped()
