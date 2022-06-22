@@ -19,12 +19,15 @@ public class PlayerInput : MonoBehaviour
 
     public bool moveDir { get; private set; }
 
+    public bool lookDown { get; private set; }
+
 
     // Start is called before the first frame update
     public void Start()
     {
         move = 0f;
         moveDir = false;
+        lookDown = false;
     }
 
     // Update is called once per frame
@@ -48,6 +51,16 @@ public class PlayerInput : MonoBehaviour
         }
 
         topDawn = Input.GetAxis(TopDawnAxisName);
+
+        if (topDawn < 0)
+        {
+            lookDown = true;
+        }
+        else
+        {
+            lookDown = false;
+        }
+
         fire = Input.GetButton(fireButtonName);
 
     }

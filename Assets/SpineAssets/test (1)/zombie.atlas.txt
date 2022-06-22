@@ -1,0 +1,139 @@
+
+zombie.png
+size: 1420,1084
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l_1
+  rotate: false
+  xy: 1302, 707
+  size: 109, 372
+  orig: 140, 372
+  offset: 0, 0
+  index: -1
+arm_l_2
+  rotate: true
+  xy: 951, 970
+  size: 109, 295
+  orig: 109, 295
+  offset: 0, 0
+  index: -1
+arm_l_3
+  rotate: false
+  xy: 1187, 730
+  size: 107, 130
+  orig: 109, 132
+  offset: 1, 1
+  index: -1
+arm_r_1
+  rotate: true
+  xy: 489, 3
+  size: 153, 371
+  orig: 153, 371
+  offset: 0, 0
+  index: -1
+arm_r_2
+  rotate: true
+  xy: 951, 862
+  size: 106, 303
+  orig: 106, 303
+  offset: 0, 0
+  index: -1
+arm_r_3
+  rotate: false
+  xy: 951, 717
+  size: 118, 143
+  orig: 120, 145
+  offset: 1, 1
+  index: -1
+com
+  rotate: true
+  xy: 766, 747
+  size: 332, 183
+  orig: 332, 183
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 951, 484
+  size: 221, 291
+  orig: 238, 291
+  offset: 17, 0
+  index: -1
+l_leg_1
+  rotate: false
+  xy: 504, 678
+  size: 260, 401
+  orig: 260, 401
+  offset: 0, 0
+  index: -1
+l_leg_2
+  rotate: true
+  xy: 862, 39
+  size: 179, 438
+  orig: 193, 438
+  offset: 14, 0
+  index: -1
+l_leg_3
+  rotate: true
+  xy: 1302, 11
+  size: 225, 113
+  orig: 233, 113
+  offset: 8, 0
+  index: -1
+neck
+  rotate: true
+  xy: 1071, 720
+  size: 140, 114
+  orig: 140, 114
+  offset: 0, 0
+  index: -1
+r_leg_1
+  rotate: true
+  xy: 999, 238
+  size: 244, 374
+  orig: 244, 374
+  offset: 0, 0
+  index: -1
+r_leg_2
+  rotate: true
+  xy: 504, 475
+  size: 201, 445
+  orig: 221, 445
+  offset: 20, 0
+  index: -1
+r_leg_3
+  rotate: true
+  xy: 1244, 486
+  size: 219, 163
+  orig: 219, 163
+  offset: 0, 0
+  index: -1
+tourso1
+  rotate: false
+  xy: 2, 470
+  size: 500, 609
+  orig: 500, 609
+  offset: 0, 0
+  index: -1
+tourso2
+  rotate: true
+  xy: 2, 158
+  size: 310, 614
+  orig: 310, 614
+  offset: 0, 0
+  index: -1
+tourso3
+  rotate: true
+  xy: 2, 2
+  size: 154, 485
+  orig: 154, 485
+  offset: 0, 0
+  index: -1
+tourso4
+  rotate: true
+  xy: 618, 220
+  size: 253, 379
+  orig: 253, 379
+  offset: 0, 0
+  index: -1
