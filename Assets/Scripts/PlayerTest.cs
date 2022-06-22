@@ -19,7 +19,17 @@ public class PlayerTest : MonoBehaviour
     }
 
     private void Update()
-    {
+    {  
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            PopupController.Show("TestPopup", null);
+        }
+
+        if (Input.GetKeyDown(KeyCode.X)) {
+            PopupController.Hide();
+        }
+
+
+
         perk?.Update(Time.deltaTime);
         if (Input.GetMouseButton(0))
         {

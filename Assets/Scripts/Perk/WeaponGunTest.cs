@@ -32,6 +32,10 @@ public class WeaponGunTest : WeaponGun
         obj.transform.position = self.transform.position;
         obj.transform.rotation = Quaternion.AngleAxis(angle, obj.transform.right);
 
+        if (Physics.Raycast(obj.transform.position, shotDir, out var hit, 1000F))
+        {
+            Managers.Interactor.AddEvent(EventPool.Get<HitEvent>(), new EventParam() { sender = self, receiver = hit.transform.gameObject });
+        }
         Debug.DrawRay(self.transform.position, shotDir * 100F, Color.red, Data.shotDelay * 0.5f);
     }
 
