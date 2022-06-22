@@ -1,0 +1,104 @@
+
+sample2.png
+size: 644,1052
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm1
+  rotate: true
+  xy: 149, 27
+  size: 107, 144
+  orig: 109, 146
+  offset: 1, 1
+  index: -1
+arm1_2
+  rotate: false
+  xy: 2, 5
+  size: 145, 129
+  orig: 147, 131
+  offset: 1, 1
+  index: -1
+arm2
+  rotate: false
+  xy: 519, 462
+  size: 103, 149
+  orig: 105, 151
+  offset: 1, 1
+  index: -1
+arm2_2
+  rotate: true
+  xy: 583, 178
+  size: 155, 54
+  orig: 157, 56
+  offset: 1, 1
+  index: -1
+bullet
+  rotate: true
+  xy: 295, 60
+  size: 74, 124
+  orig: 98, 150
+  offset: 13, 12
+  index: -1
+gun
+  rotate: false
+  xy: 2, 136
+  size: 579, 197
+  orig: 581, 199
+  offset: 1, 1
+  index: -1
+gun_2
+  rotate: false
+  xy: 583, 104
+  size: 49, 72
+  orig: 72, 88
+  offset: 13, 6
+  index: -1
+head
+  rotate: false
+  xy: 519, 613
+  size: 121, 134
+  orig: 123, 136
+  offset: 1, 1
+  index: -1
+knife
+  rotate: false
+  xy: 2, 335
+  size: 618, 121
+  orig: 640, 360
+  offset: 8, 121
+  index: -1
+leg1
+  rotate: true
+  xy: 421, 69
+  size: 65, 132
+  orig: 67, 134
+  offset: 1, 1
+  index: -1
+leg1_2
+  rotate: true
+  xy: 421, 2
+  size: 65, 170
+  orig: 67, 172
+  offset: 1, 1
+  index: -1
+m1911
+  rotate: true
+  xy: 2, 458
+  size: 589, 357
+  orig: 600, 377
+  offset: 1, 17
+  index: -1
+m1911_2
+  rotate: false
+  xy: 361, 749
+  size: 276, 298
+  orig: 600, 377
+  offset: 156, 33
+  index: -1
+tourso
+  rotate: false
+  xy: 361, 492
+  size: 156, 255
+  orig: 156, 255
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,70 @@
+combat : 백병전
+dead : 죽음
+dead_strong : 대피격1에서의 죽음
+dead_strong2 : 대피격2에서의 죽음
+dmg_airborn : 에어본
+dmg_b_mid : 뒷 중피격
+dmg_b_veryweak : 뒷 극소피격
+dmg_b_weak : 뒷 소피격
+dmg_burn : 화상에 의한 경직
+dmg_f_mid : 앞 중피격
+dmg_f_veryweak : 앞 극소피격
+dmg_f_weak : 앞 소피격
+dmg_falldown : '넘어짐'상태.
+dmg_jumpfall : 점프상태에서 피격
+dmg_jumpland : 점프피격상태에서 땅에 착지
+dmg_shock : '감전'상태
+dmg_strong : 대피격1. 멀리 넉백당하는 대피격이다.
+dmg_strong2 : 대피격2. 제자리에서 꼬꾸라지는 대피격이다.
+dmg_stun : '스턴'상태
+idle : 아이들. 숨쉬는 상태
+idle_aiming : 조준상태
+idle_diagonal : 대각선 바라보는 상태
+idle_sit : 앉아있는 상태
+idle_top : 위 바라보는 상태
+jump : 점프
+jumpfall : 점프 후 땅으로 내려오는 중
+jumpfallbot : 점프상태에서 아래바라보는 상태
+jumpforward : run도중 점프
+jumpland : 점프 후 땅에 착지하는 동작
+jumpshootland : 점프 상태에서 슈팅 후 착지
+move_b_aiming : 조준중 뒷걸음
+move_b_diagonal : 대각선 바라보는중 뒷걸음
+move_b_top : 위 바라보는중 뒷걸음
+move_f : 앞으로 이동
+move_f_aiming : 조준중 앞으로 이동
+move_f_diagoanl : 대각성 바라보는중 앞으로 이동
+move_f_sit : 앉아서 앞으로 이동
+move_f_top : 위 바라보는중 앞으로 이동
+reload : 장전
+reload_fast : 빠른 재장전
+reloadready : 장전 시작동작
+reloadready_fast : 빠른 재장전 시작동작
+rise1 : 대피격1에서 일어나는 동작
+rise2 : 대피격2에서 일어나는 동작
+roll_rise1 : rise1 스킵 구르기동작
+roll_rise2 : rise2 스킵 구르기동작
+run : 달리기
+run_combat : 달리는도중 백병전. 백병전이후 달리기는 멈추고 아이들로 돌아감
+run_stickiness : '끈적임' 상태에서 달리거나 점프를 시도할 때 나오는 동작.
+runstop : 달리기 멈춤동작
+shoot : 슈팅
+shoot_aiming : 조준중 슈팅
+shoot_bot : 아래보는 상태에서 슈팅
+shoot_diagonal : 대각선 바라보는중 슈팅
+shoot_ready : 슈팅 준비(샷건퍼크 전용)
+shoot_sit : 앉아서 슈팅
+shoot_top : 위 바라보는중 슈팅
+step : 스텝
+step_stickiness : '끈적임'상태에서 스텝
+throw : 수류탄 투척
+throw_idle : 수류탄 준비 아이들
+throw_ready : 수류탄 준비
+turn : 방향전환
+turn_run : 달리는 도중 방향전환
+turn_sit : 앉은 상태에서 방향전환
+
+under 시리즈 : 하체 애니메이션만 있는 버전
+up 시리즈 : 상체 애니메이션만 있는 버전
+
+슈팅 시리즈, 백병전에 이벤트키 박아놨음.

@@ -4,35 +4,31 @@ using UnityEngine;
 
 public class PlayerCameraMove : MonoBehaviour
 {
-    GameObject parent;
-
-    Vector3 mousePosition;
-
-    Camera cam;
+    GameObject Parent;
 
     // Start is called before the first frame update
     public void Start()
     {
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        parent = transform.parent.gameObject;
+        Parent = transform.parent.gameObject;
     }
 
     // Update is called once per frame
     public void Update()
     {
-        //mousePosition = Input.mousePosition;
 
-        //mousePosition = cam.ScreenToWorldPoint(mousePosition);
+        Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+                Input.mousePosition.y, -Camera.main.transform.position.z));
+
+        if (point.x > Parent.transform.position.x)
+        {
 
 
-        //if (mousePosition.x > parent.transform.position.x)
-        //{
-        //    transform.position = new Vector3(2, 6.3f, 0);
+            transform.position = new Vector3(Parent.transform.position.x + 6f, Parent.transform.position.y + 15.9f, Parent.transform.position.z);
 
-        //}
-        //else
-        //{
-        //    transform.position = new Vector3(-2, 6.3f, 0);
-        //}
+        }
+        else
+        {
+            transform.position = new Vector3(Parent.transform.position.x - 6f, Parent.transform.position.y + 15.9f, Parent.transform.position.z);
+        }
     }
 }

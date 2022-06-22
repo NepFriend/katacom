@@ -1,0 +1,7 @@
+move_under : 이동 하체만
+reload_top : 장전 상체만
+shoot_aiming_top : 조준발사 상체만
+shoot_top : 발사 상체만
+walk_under : 걷기 하체만
+
+제작 목표 : 이동, 걷기중 장전, 발사
