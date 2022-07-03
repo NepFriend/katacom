@@ -8,6 +8,9 @@ public class PlayerARAnimation : PlayerAnimation
 {
     bool modeChange;
 
+    //총쏠때 대가리 흔드는거 방지할 대책
+    bool idleChange;
+
     public void Start()
     {
 
@@ -37,56 +40,14 @@ public class PlayerARAnimation : PlayerAnimation
 
         turn = false;
 
+
+        idleChange = true;
     }
 
 
     // Update is called once per frame
     public void Update()
     {
-
-        //임시 극소피격 소피격 중피격 대피격
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            //sk.AnimationState.SetEmptyAnimations(0.1f);
-            sk.AnimationState.SetAnimation(13, "dmg_f_veryweak", false);
-            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
-
-            Status.Instance.Damaged(10);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            //sk.AnimationState.SetEmptyAnimations(0.1f);
-            sk.AnimationState.SetAnimation(13, "dmg_f_weak", false);
-            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.55f);
-
-            Status.Instance.StunGuageIncrease(30);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            //sk.AnimationState.SetEmptyAnimations(0.1f);
-            sk.AnimationState.SetAnimation(13, "dmg_f_mid", false);
-            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.9f);
-
-            Status.Instance.BurnGuageIncrease(30);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            //sk.AnimationState.SetEmptyAnimations(0.1f);
-            sk.AnimationState.SetAnimation(13, "dmg_b_veryweak", false);
-            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            //sk.AnimationState.SetEmptyAnimations(0.1f);
-            sk.AnimationState.SetAnimation(13, "dmg_b_weak", false);
-            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.55f);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            //sk.AnimationState.SetEmptyAnimations(0.1f);
-            sk.AnimationState.SetAnimation(13, "dmg_f_mid", false);
-            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.9f);
-        }
 
 
 
@@ -590,6 +551,13 @@ public class PlayerARAnimation : PlayerAnimation
     public override void Shoot(int dir)
     {// 0 기본사격, 1 대각선, 2 위, 3 조준
 
+        //if (idleChange)
+        //{
+        //    sk.AnimationState.AddAnimation(3, "under_idle", false, 0);
+
+        //    idleChange = false;
+        //}
+
         if (modeChange)
         {
 
@@ -868,6 +836,156 @@ public class PlayerARAnimation : PlayerAnimation
         sk.AnimationState.SetAnimation(10, "throw", false);
         sk.AnimationState.AddEmptyAnimation(10, 0.1f, 0.7f);
 
+
+    }
+
+    public override void getDamage(int type, bool leftRight)
+    {//데미지 타입과 좌우구별 (좌가 0)
+        /*
+         소반응 0
+         극소피격 1
+         소피격 2
+         중피격 3
+         대피격 4
+         공중피격 5 
+         쇼크 6
+         스턴 7
+         번 8
+         에어본 9
+         폴다운 10
+         */
+
+        //Status.Instance.Damaged(10);   Status.Instance.StunGuageIncrease(30);  Status.Instance.BurnGuageIncrease(30);
+
+        if (type == 0)
+        { // 움찔 
+
+            sk.AnimationState.SetAnimation(13, "dmg_no", false);
+            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
+
+        }
+        else if (type == 6)
+        {
+            //sk.AnimationState.SetEmptyAnimations(0.1f);
+            sk.AnimationState.SetAnimation(13, "dmg_shock", false);
+            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
+            //밀리는 면역
+
+        }
+        else if (type == 7)
+        {
+            //sk.AnimationState.SetEmptyAnimations(0.1f);
+            sk.AnimationState.SetAnimation(13, "dmg_stun", false);
+            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
+
+        }
+        else if (type == 8)
+        {
+            //sk.AnimationState.SetEmptyAnimations(0.1f);
+            sk.AnimationState.SetAnimation(13, "dmg_burn", false);
+            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
+
+        }
+        else if (type == 9)
+        {
+            //sk.AnimationState.SetEmptyAnimations(0.1f);
+            sk.AnimationState.SetAnimation(13, "dmg_airborn", false);
+            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
+
+            //여기까지 방향 상관없는 피격
+        }
+        else if (type == 10)
+        {
+            //sk.AnimationState.SetEmptyAnimations(0.1f);
+            sk.AnimationState.SetAnimation(13, "dmg_falldown", false);
+            sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
+
+            //여기까지 방향 상관없는 피격
+        }
+        else
+        {
+            // 이후로는 방향 상관있는 피격
+            if (sk.skeleton.ScaleX > 0 && leftRight || sk.skeleton.ScaleX < 0 && !leftRight)
+            {
+                if (type == 1)
+                {
+                    //sk.AnimationState.SetEmptyAnimations(0.1f);
+                   // sk.AnimationState.SetEmptyAnimation(13, 0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_f_veryweak", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0, 0.7f);
+
+                }
+                else if (type == 2)
+                {
+                    //sk.AnimationState.SetEmptyAnimations(0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_f_weak", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.55f);
+
+
+                }
+                else if (type == 3)
+                {
+                    //sk.AnimationState.SetEmptyAnimations(0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_f_mid", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.9f);
+
+                }
+                else if (type == 4)
+                {
+                    //sk.AnimationState.SetEmptyAnimations(0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_b_veryweak", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
+                }
+                else if (type == 5)
+                {
+                    //sk.AnimationState.SetEmptyAnimations(0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_b_weak", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.55f);
+                }
+            }
+            else
+            {
+                if (type == 1)
+                {
+                   // sk.AnimationState.SetEmptyAnimations(0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_b_veryweak", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0.01f, 0.4f);
+
+                }
+                else if (type == 2)
+                {
+                    //sk.AnimationState.SetEmptyAnimations(0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_b_weak", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.55f);
+
+
+                }
+                else if (type == 3)
+                {
+                    //sk.AnimationState.SetEmptyAnimations(0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_b_mid", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.9f);
+
+                }
+                else if (type == 4)
+                {
+                    //sk.AnimationState.SetEmptyAnimations(0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_b_veryweak", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
+                }
+                else if (type == 5)
+                {
+                    //sk.AnimationState.SetEmptyAnimations(0.1f);
+                    sk.AnimationState.SetAnimation(13, "dmg_b_weak", false);
+                    sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.55f);
+                }
+            }
+
+          
+        }
+
+
+       
 
     }
 

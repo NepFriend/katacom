@@ -108,14 +108,6 @@ public class Status : MonoBehaviour
 
 
     }
-
-    private void CharacterChange()
-    {
-      
-    }
-
-
-
     IEnumerator Burn() // 플레이어가 정지해야 하는 특수 액션
     {
         while (BurnTime > 0)

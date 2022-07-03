@@ -539,14 +539,14 @@ public class PlayerSMGAnimation : PlayerAnimation
         {
             if (!playerMove.sit)
             {
-                sk.AnimationState.SetEmptyAnimation(3, 0f);
+               // sk.AnimationState.SetEmptyAnimation(3, 0f);
                 TrackEntry entry = sk.AnimationState.AddAnimation(3, "up_shoot", false, 0);
                 entry.MixDuration = 0.1f;
                 //entry.AnimationStart = 0.5f;
             }
             else
             {
-                sk.AnimationState.SetEmptyAnimation(3, 0f);
+               // sk.AnimationState.SetEmptyAnimation(3, 0f);
                 TrackEntry entry = sk.AnimationState.AddAnimation(3, "shoot_sit", false, 0);
                 entry.MixDuration = 0.1f;
             }
@@ -555,25 +555,25 @@ public class PlayerSMGAnimation : PlayerAnimation
         }
         else if (dir == 1)
         {
-            sk.AnimationState.SetEmptyAnimation(3, 0f);
+           // sk.AnimationState.SetEmptyAnimation(3, 0f);
             TrackEntry entry = sk.AnimationState.AddAnimation(3, "up_shoot_diagonal", false, 0);
             entry.MixDuration = 0.1f;
         }
         else if (dir == 2)
         {
-            sk.AnimationState.SetEmptyAnimation(3, 0f);
+           // sk.AnimationState.SetEmptyAnimation(3, 0f);
             TrackEntry entry = sk.AnimationState.AddAnimation(3, "up_shoot_top", false, 0);
             entry.MixDuration = 0.1f;
         }
         else if (dir == 3)
         {
-            sk.AnimationState.SetEmptyAnimation(3, 0f);
+           // sk.AnimationState.SetEmptyAnimation(3, 0f);
             TrackEntry entry = sk.AnimationState.AddAnimation(3, "up_shoot_aiming", false, 0);
             entry.MixDuration = 0.1f;
         }
         else if (dir == 4)
         {
-            sk.AnimationState.SetEmptyAnimation(3, 0f);
+          //  sk.AnimationState.SetEmptyAnimation(3, 0f);
             TrackEntry entry = sk.AnimationState.AddAnimation(3, "shoot_bot", false, 0);
             entry.MixDuration = 0.1f;
         }

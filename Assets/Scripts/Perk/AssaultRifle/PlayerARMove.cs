@@ -252,6 +252,11 @@ public class PlayerARMove : PlayerMove
         Landing();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("df");
+        PlInputAnimation.getDamage(1,true);
+    }
 
 
     IEnumerator PlayerDamaged() // 플레이어 대미지 입었을 시 행동목록

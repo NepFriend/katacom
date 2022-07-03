@@ -418,6 +418,23 @@ public class PlayerAnimation : MonoBehaviour
 
     }
 
+
+    public virtual void getDamage(int type, bool leftRight)
+    {//데미지 타입과 좌우구별 (좌가 0)
+        /*
+         소반응
+         극소피격
+         소피격
+         중피격
+         대피격
+         공중피격
+         쇼크
+         스턴
+         */
+
+
+    }
+
     //여기서부터는 클래스로 더 나은 방법 찾기 전 임시로 다는 애니메이션 모음
     //각 퍼크마다 들어가는 애니메이션과 아닌것이 있어 구분짓고, 교체가 용이하게 되기 위함
 
