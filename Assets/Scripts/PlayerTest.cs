@@ -14,17 +14,19 @@ public class PlayerTest : MonoBehaviour
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
 
-        perk = new PerkAssertRifle();
-        perk.EquipWeapon(Weapon.ID.AssertRifle1);
+        perk = new PerkAssaultRifle();
+        perk.EquipWeapon(Weapon.ID.AssaultRifle1);
     }
 
     private void Update()
-    {  
-        if (Input.GetKeyDown(KeyCode.Z)) {
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
             PopupController.Show("TestPopup", null);
         }
 
-        if (Input.GetKeyDown(KeyCode.X)) {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
             PopupController.Hide();
         }
 
@@ -37,15 +39,7 @@ public class PlayerTest : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            perk?.EquipWeapon(Weapon.ID.AssertRifle1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            perk?.EquipWeapon(Weapon.ID.AssertRifle2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            perk?.EquipWeapon(Weapon.ID.AssertRifle3);
+            perk?.EquipWeapon(Weapon.ID.AssaultRifle1);
         }
     }
 }

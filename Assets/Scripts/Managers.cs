@@ -7,7 +7,6 @@ public class Managers : MonoBehaviour
     private static bool isInitialized = false;
 
     public static Interactor Interactor { get; private set; }
-    public static BuffManager Buff {get; private set;}
 
 
     private void Awake()
@@ -23,6 +22,5 @@ public class Managers : MonoBehaviour
 
         // Add more if you need...
         Interactor = gameObject.AddComponent<Interactor>();
-        Buff = gameObject.AddComponent<BuffManager>();
     }
 }

@@ -1,124 +1,124 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
 
-public class Status : MonoBehaviour
-{
+// public class Status : MonoBehaviour
+// {
 
-    float hp = 100;
+//     float hp = 100;
 
-    public float stunGuage = 0;
-    public float BurnGuage = 0;
+//     public float stunGuage = 0;
+//     public float BurnGuage = 0;
 
-    int BurnTime = 0;
+//     int BurnTime = 0;
 
-    // ½Ì±ÛÅæ ÆÐÅÏÀ» »ç¿ëÇÏ±â À§ÇÑ ÀÎ½ºÅÏ½º º¯¼ö
-    private static Status _instance;
+//     // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//     private static Status _instance;
 
-    // ÀÎ½ºÅÏ½º¿¡ Á¢±ÙÇÏ±â À§ÇÑ ÇÁ·ÎÆÛÆ¼
-    public static Status Instance
-    {
-        get
-        {
-            // ÀÎ½ºÅÏ½º°¡ ¾ø´Â °æ¿ì¿¡ Á¢±ÙÇÏ·Á ÇÏ¸é ÀÎ½ºÅÏ½º¸¦ ÇÒ´çÇØÁØ´Ù.
-            if (!_instance)
-            {
-                _instance = FindObjectOfType(typeof(Status)) as Status;
+//     // ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼
+//     public static Status Instance
+//     {
+//         get
+//         {
+//             // ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½Ï¸ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
+//             if (!_instance)
+//             {
+//                 _instance = FindObjectOfType(typeof(Status)) as Status;
 
-                if (_instance == null)
-                    Debug.Log("½Ì±ÛÅæ ¾ø´Â ¿ÀºêÁ§Æ®");
-            }
-            return _instance;
-        }
-    }
+//                 if (_instance == null)
+//                     Debug.Log("ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®");
+//             }
+//             return _instance;
+//         }
+//     }
 
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-        }
-        // ÀÎ½ºÅÏ½º°¡ Á¸ÀçÇÏ´Â °æ¿ì »õ·Î»ý±â´Â ÀÎ½ºÅÏ½º¸¦ »èÁ¦ÇÑ´Ù.
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
-        }
-        // ¾Æ·¡ÀÇ ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© ¾ÀÀÌ ÀüÈ¯µÇ´õ¶óµµ ¼±¾ðµÇ¾ú´ø ÀÎ½ºÅÏ½º°¡ ÆÄ±«µÇÁö ¾Ê´Â´Ù.
-        DontDestroyOnLoad(gameObject);
-    }
+//     private void Awake()
+//     {
+//         if (_instance == null)
+//         {
+//             _instance = this;
+//         }
+//         // ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+//         else if (_instance != this)
+//         {
+//             Destroy(gameObject);
+//         }
+//         // ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ç´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+//         DontDestroyOnLoad(gameObject);
+//     }
 
-    private void Update()
-    {
-        if (stunGuage > 0)
-        {
-            stunGuage -= Time.deltaTime;
-        }
+//     private void Update()
+//     {
+//         if (stunGuage > 0)
+//         {
+//             stunGuage -= Time.deltaTime;
+//         }
 
-        if (BurnGuage > 0)
-        {
-            BurnGuage -= Time.deltaTime;
-            if (BurnGuage < 0)
-            {
-                BurnGuage = 0;
-            }
-        }
-    }
+//         if (BurnGuage > 0)
+//         {
+//             BurnGuage -= Time.deltaTime;
+//             if (BurnGuage < 0)
+//             {
+//                 BurnGuage = 0;
+//             }
+//         }
+//     }
 
-    public void Damaged(float dmg)
-    {
-        hp -= dmg;
-        Debug.Log("ÇÃ·¹ÀÌ¾î hp = " + hp);
-    }
+//     public void Damaged(float dmg)
+//     {
+//         hp -= dmg;
+//         Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ hp = " + hp);
+//     }
 
-    public void StunGuageIncrease(float increment)
-    {
-        stunGuage += increment;
-        Debug.Log("ÇÃ·¹ÀÌ¾î ½ºÅÏ °ÔÀÌÁö = " + stunGuage);
+//     public void StunGuageIncrease(float increment)
+//     {
+//         stunGuage += increment;
+//         Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = " + stunGuage);
 
-        if (stunGuage > 100)
-        {
-           
-            Stun();
-        }
+//         if (stunGuage > 100)
+//         {
 
-    }
+//             Stun();
+//         }
 
-    private void Stun()
-    {
-        stunGuage = 0;
-        Debug.Log("ÇÃ·¹ÀÌ¾î ½ºÅÏ!");
-    }
+//     }
 
-    public void BurnGuageIncrease(float increment)
-    {
-        if (BurnTime == 0)
-        {
-            BurnGuage += increment;
-            Debug.Log("ÇÃ·¹ÀÌ¾î È­»ó °ÔÀÌÁö = " + BurnGuage);
+//     private void Stun()
+//     {
+//         stunGuage = 0;
+//         Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½!");
+//     }
 
-
-            if (BurnGuage > 100)
-            {
-                BurnGuage = 0;
-                BurnTime = 5;
-                StartCoroutine(Burn());
-            }
-        }
-       
+//     public void BurnGuageIncrease(float increment)
+//     {
+//         if (BurnTime == 0)
+//         {
+//             BurnGuage += increment;
+//             Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = " + BurnGuage);
 
 
-    }
-    IEnumerator Burn() // ÇÃ·¹ÀÌ¾î°¡ Á¤ÁöÇØ¾ß ÇÏ´Â Æ¯¼ö ¾×¼Ç
-    {
-        while (BurnTime > 0)
-        {
-            hp -= 5;
-            Debug.Log("ÇÃ·¹ÀÌ¾î È­»ó!");
-            Debug.Log("ÇÃ·¹ÀÌ¾î hp = " + hp);
-            yield return new WaitForSeconds(1);
-            BurnTime--;
-        }
+//             if (BurnGuage > 100)
+//             {
+//                 BurnGuage = 0;
+//                 BurnTime = 5;
+//                 StartCoroutine(Burn());
+//             }
+//         }
 
-    }
 
-}
+
+//     }
+//     IEnumerator Burn() // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ Æ¯ï¿½ï¿½ ï¿½×¼ï¿½
+//     {
+//         while (BurnTime > 0)
+//         {
+//             hp -= 5;
+//             Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ È­ï¿½ï¿½!");
+//             Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ hp = " + hp);
+//             yield return new WaitForSeconds(1);
+//             BurnTime--;
+//         }
+
+//     }
+
+// }

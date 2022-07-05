@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Status
 {
-    
+
 }
 
 public abstract class Skill
@@ -38,6 +38,13 @@ public class Passive : System.IEquatable<Passive>
         this.status = status;
     }
 
+    public static T Create<T>(GameObject target, Status status) where T : Passive, new()
+    {
+        T passive = new T();
+        passive.Initialize(target, status);
+        return passive;
+    }
+
     public bool Equals(Passive other)
     {
         return this.GetType() == other.GetType();
@@ -55,6 +62,7 @@ public class Passive : System.IEquatable<Passive>
 
 public class HPPlusPassive : Passive
 {
+    public HPPlusPassive() : base(null, null) { }
     public HPPlusPassive(GameObject caller, Status status) : base(caller, status) { }
 
     public override void OnEquipped()
@@ -72,6 +80,7 @@ public class HPPlusPassive : Passive
 
 public class HPHighPassive : Passive
 {
+    public HPHighPassive() : base(null, null) { }
     public HPHighPassive(GameObject caller, Status status) : base(caller, status) { }
 
     public override void OnEquipped()

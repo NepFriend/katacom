@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponGunTest : WeaponGun
+public class TestGun : WeaponGun
 {
     private GameObject bullet;
 
-    public WeaponGunTest(int slotIndex, ID id) : base(slotIndex, id)
+    public TestGun(int slotIndex, ID id) : base(slotIndex, id)
     {
         bullet = Resources.Load("TestBullet") as GameObject;
     }

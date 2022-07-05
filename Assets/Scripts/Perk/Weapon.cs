@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : IUpdate
+public abstract class Weapon
 {
     public enum ID
     {
-        AssertRifle1 = 10000,
-        AssertRifle2 = 10001,
-        AssertRifle3 = 10002,
+        AssaultRifle1 = 10000,
 
         SniperRifle1 = 20000,
         SniperRifle2 = 20001
