@@ -7,14 +7,13 @@ using UnityEditor;
 
 public class PlayerTest : MonoBehaviour
 {
-    public Perk perk;
+    public Perk2 perk;
 
     private void Awake()
     {
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
 
-        perk = new PerkAssaultRifle();
         perk.EquipWeapon(Weapon.ID.AssaultRifle1);
     }
 

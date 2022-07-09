@@ -6,7 +6,7 @@ using UnityEngine;
 
 public enum ReturnState
 {
-    //»óÅÂ Ç¥±â¸¦ À§ÇÑ enum
+    //ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ enum
     SUCCESS,
     FAILURE,
     RUNNING
@@ -27,7 +27,7 @@ public abstract class Action : MonoBehaviour
     public bool spawned = true;
 
 
-    // ¹ÙÅÁÀÌ µÇ´Â ¾×¼Ç
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½×¼ï¿½
     public static Action Create<T>() where T : Action, new() { return new T(); }
 
     public static Action Failure() { return new ForceFailure(); }
@@ -39,7 +39,7 @@ public abstract class Action : MonoBehaviour
 
 public class BehaviorTree1 : Action
 {
-    //±âº»ÀûÀÎ Æ² »ý¼º
+    //ï¿½âº»ï¿½ï¿½ï¿½ï¿½ Æ² ï¿½ï¿½ï¿½ï¿½
     private Sequence sequence;
 
     public static BehaviorTree1 Create(Sequence seq)
@@ -56,8 +56,8 @@ public class BehaviorTree1 : Action
 
 public class Selector : Action
 {
-    //½ÇÆÐ ÇØ¾ß ½ÇÇàµÇ´Â?
-    //ÀÚ½Äµé Áß¿¡ ÇÏ³ª¶óµµ ¼º°øÀ» ½ÃÄÑ¾ß ³ª°¥ ¼ö ÀÖ´Â ±¸Á¶
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½?
+    //ï¿½Ú½Äµï¿½ ï¿½ß¿ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     private List<Action> children = new List<Action>();
     private int latest = 0;
@@ -92,8 +92,8 @@ public class Selector : Action
 
 public class SelectorRandom : Action
 {
-    //º»·¡ ¿ªÇÒÀÇ ¼¿·ºÅÍ
-    //´ÙÁß ÀÚ½Äµé Áß¿¡ ÇÏ³ª ÅÃÇØ¼­ ¾×¼Ç½ÇÇà
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Äµï¿½ ï¿½ß¿ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½×¼Ç½ï¿½ï¿½ï¿½
 
     private List<Action> children = new List<Action>();
     private int latest = -1;
@@ -125,8 +125,8 @@ public class SelectorRandom : Action
 
 public class Sequence : Action
 {
-    //ÇÏ³ª¶óµµ ½ÇÆÐÇÏ¸é ´Ù½Ã Ã·ºÎÅÍ Àç½ÇÇàµÇ´Â ½ÃÄö½º
-    //ÀüºÎ ´Ù ½ÇÇàµÇÁö¸¸ ¼øÂ÷ÀûÀ¸·Î ½ÇÇàµÈ´Ù
+    //ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ù½ï¿½ Ã·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½
 
     private List<Action> children = new List<Action>();
     private int latest = 0;
@@ -161,8 +161,8 @@ public class Sequence : Action
 
 public class Parallel : Action
 {
-    // º´·Ä·Î ½ÇÇàµÈ´Ù
-    // µµÁß¿¡ ½ÇÆÐ ÇÏÁö ¾Ê´Â ÇÑ ÇÑ²¨¹ø¿¡ ÀüºÎ ½ÇÇàµÈ´Ù
+    // ï¿½ï¿½ï¿½Ä·ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½
+    // ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ ï¿½Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½
 
     private List<Action> children = new List<Action>();
     private int[] indices;
@@ -204,8 +204,8 @@ public class Parallel : Action
 
 public class Inverter : Action
 {
-    //ÀÚ½ÄÀÌ ¼º°øÇÏ¸é ºÎ¸ð°¡ ½ÇÆÐ, ¶Ç´Â ±× ¿ª¼ø
-    //Á¤¹Ý´ëÀÇ °á°ú¸¦ ºÒ·¯ÀÏÀ¸Å²´Ù
+    //ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ç´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½Å²ï¿½ï¿½
 
     private Action child;
 
@@ -227,7 +227,7 @@ public class Inverter : Action
 
 public class If : Action
 {
-    //Æ¯Á¤ Á¶°ÇÀ» °Ë»çÇÏ¿© ±×°ÍÀÌ ÂüÀÏ °æ¿ì ½ÇÇàÇÑ´Ù
+    //Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ ï¿½×°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 
     private Action child;
     private Action condition;
@@ -248,7 +248,7 @@ public class If : Action
     }
 }
 
-//±×Àú Âü°ÅÁþÀ» µµÃâÇÏ±â À§ÇÑ Ä¿¸ÇµåÀÌ´Ù
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½Çµï¿½ï¿½Ì´ï¿½
 public class ForceFailure : Action
 {
     public override ReturnState Update(GameObject obj, float dt)
@@ -265,16 +265,16 @@ public class ForceSuccess : Action
 }
 
 
-//¿©±â¼­ºÎÅÍ ±¸µ¿ÇÏ´Â ¾×¼ÇµéÀÌ´Ù
+//ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½×¼Çµï¿½ï¿½Ì´ï¿½
 public class Idle : Action
 {
-    
+
     public override ReturnState Update(GameObject obj, float dt)
     {
-       
+
         if (AnimaionOnOff)
         {
-             //AnimeIdle();
+            //AnimeIdle();
             AnimaionOnOff = false;
         }
 
@@ -295,15 +295,15 @@ public class Idle : Action
         AnimationTime = 0;
         AnimaionOnOff = true;
         return ReturnState.SUCCESS;
-    }   
+    }
 }
 
 public class EnemyMove : Action
 {
-    
+
     public override ReturnState Update(GameObject obj, float dt)
     {
-        Debug.Log("¿òÁ÷ÀÓ ½ÃÀÛ");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
         if (AnimaionOnOff)
         {
@@ -315,15 +315,15 @@ public class EnemyMove : Action
         TargetPlayer = Physics2D.OverlapCircleAll(obj.transform.position, 1000f);
 
 
-        if (TargetPlayer.Length >0)
+        if (TargetPlayer.Length > 0)
         {
-            
+
             for (int i = 0; i < TargetPlayer.Length; i++)
             {
                 if (TargetPlayer[i].tag == "Player")
                 {
                     TargetNum = i;
-                    Debug.Log("ÇÃ·¹ÀÌ¾î ´Ù½Ã Ã£¾Ò´Ù");
+                    Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ù½ï¿½ Ã£ï¿½Ò´ï¿½");
                 }
             }
 
@@ -331,14 +331,14 @@ public class EnemyMove : Action
         }
         else
         {
-           
+
         }
 
 
         if (obj.transform.position.x - TargetPlayer[TargetNum].transform.position.x > 10
            || obj.transform.position.x - TargetPlayer[TargetNum].transform.position.x < 10)
         {
-            Vector3 dir =new Vector2( TargetPlayer[TargetNum].transform.position.x - obj.transform.position.x, 0);
+            Vector3 dir = new Vector2(TargetPlayer[TargetNum].transform.position.x - obj.transform.position.x, 0);
             obj.transform.position += dir * dt;
             return ReturnState.RUNNING;
         }
@@ -348,7 +348,7 @@ public class EnemyMove : Action
 
         Debug.Log(TargetPlayer[TargetNum]);
 
-       
+
 
         AnimationTime = 0;
         AnimaionOnOff = true;
@@ -361,14 +361,14 @@ public class Tracking : Action
     public override ReturnState Update(GameObject obj, float dt)
     {
 
-      //  AnimeMove();
+        //  AnimeMove();
         return ReturnState.SUCCESS;
     }
 }
 
 public class EnemyPlayerSearch : Action
 {
-    //Á¶°Ç
+    //ï¿½ï¿½ï¿½ï¿½
     public override ReturnState Update(GameObject obj, float dt)
     {
         //Collider[] cols = Physics.OverlapSphere(transform.position, 10f, 1 << 8);
@@ -382,7 +382,7 @@ public class EnemyPlayerSearch : Action
             {
                 if (cols[i].tag == "Player")
                 {
-                    Debug.Log("ÇÃ·¹ÀÌ¾î Ã£¾Ò´Ù");
+                    Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ã£ï¿½Ò´ï¿½");
                     return ReturnState.SUCCESS;
                 }
             }
@@ -402,10 +402,10 @@ public class EnemyPlayerSearch : Action
 
 public class DidPlayerAttacked : Action
 {
-    //Á¶°Ç
+    //ï¿½ï¿½ï¿½ï¿½
     public override ReturnState Update(GameObject obj, float dt)
     {
-        
+
         if (playerAttack)
         {
             return ReturnState.SUCCESS;
@@ -424,7 +424,7 @@ public class DidPlayerAttacked : Action
 
 public class EnemyAttack : Action
 {
-    
+
 
     public override ReturnState Update(GameObject obj, float dt)
     {
@@ -451,7 +451,7 @@ public class EnemyAttack : Action
 
 public class Spawn : Action
 {
-    //Á¶°Ç
+    //ï¿½ï¿½ï¿½ï¿½
     public override ReturnState Update(GameObject obj, float dt)
     {
         if (spawned)
@@ -459,7 +459,7 @@ public class Spawn : Action
             //Collider[] cols2 = Physics.OverlapSphere(transform.position, 10f, 1 << 8);
 
             TargetPlayer = Physics2D.OverlapCircleAll(obj.transform.position, 1000f);
-            
+
 
             if (TargetPlayer.Length > 0)
             {
@@ -469,7 +469,7 @@ public class Spawn : Action
                     if (TargetPlayer[i].tag == "Player")
                     {
                         TargetNum = i;
-                        Debug.Log("½ºÆù ÈÄ ÇÃ·¹ÀÌ¾î Ã£¾Ò´Ù");
+                        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ã£ï¿½Ò´ï¿½");
                         spawned = false;
                         return ReturnState.SUCCESS;
                     }
@@ -479,7 +479,7 @@ public class Spawn : Action
             }
         }
 
-       
+
 
 
         return ReturnState.FAILURE;
@@ -488,10 +488,10 @@ public class Spawn : Action
 
 public class GroundSpawn : Action
 {
-    //Á¶°Ç
+    //ï¿½ï¿½ï¿½ï¿½
     public override ReturnState Update(GameObject obj, float dt)
     {
-        Debug.Log("¶¥½ºÆù");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 
         return ReturnState.FAILURE;
@@ -500,11 +500,11 @@ public class GroundSpawn : Action
 
 public class UnderGroundSpawn : Action
 {
-    //Á¶°Ç
+    //ï¿½ï¿½ï¿½ï¿½
     public override ReturnState Update(GameObject obj, float dt)
     {
 
-        Debug.Log("ÁöÇÏ½ºÆù");
+        Debug.Log("ï¿½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½");
 
         return ReturnState.FAILURE;
     }
@@ -512,19 +512,19 @@ public class UnderGroundSpawn : Action
 
 public class SkySpawn : Action
 {
-    //Á¶°Ç
+    //ï¿½ï¿½ï¿½ï¿½
     public override ReturnState Update(GameObject obj, float dt)
     {
-        Debug.Log("ÇÏ´Ã½ºÆù");
+        Debug.Log("ï¿½Ï´Ã½ï¿½ï¿½ï¿½");
 
 
         return ReturnState.FAILURE;
     }
 }
 
-public class PlayerDistanceDifference: Action
+public class PlayerDistanceDifference : Action
 {
-    //Á¶°Ç
+    //ï¿½ï¿½ï¿½ï¿½
     public override ReturnState Update(GameObject obj, float dt)
     {
 
