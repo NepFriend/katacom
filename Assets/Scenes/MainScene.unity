@@ -307,20 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a956368bae64bf47beeaad9b2000ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlInput: {fileID: 160086781}
-  sk: {fileID: 160086775}
-  playerAttack: {fileID: 0}
-  playerMove: {fileID: 0}
-  Move: 0
-  Jump: 0
-  Attack: 0
-  AttackCount: 0
-  AttackTime: 0
-  Dash: 0
-  moveLevel: 0
-  stop: 0
-  turn: 0
-  shoot: 0
 --- !u!114 &160086780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,19 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60183bf6a6511df4fa1ebf7ce77a8840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlInputAnimation: {fileID: 0}
-  playerInput: {fileID: 0}
-  playerRigidBody: {fileID: 0}
-  moveSpeed: 20
-  tr: {fileID: 0}
-  mainCamera: {fileID: 2012910923}
-  moveLevel: 0
-  stop: 0
-  sit: 0
-  run: 0
-  jump: 0
-  DirFix: 0
-  shift_clock: 0
 --- !u!114 &160086781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,6 +523,7 @@ MonoBehaviour:
   PlInput: {fileID: 0}
   sk: {fileID: 0}
   playerAttack: {fileID: 0}
+  playerPerk: {fileID: 0}
   playerMove: {fileID: 0}
   Move: 0
   Jump: 0
@@ -573,19 +547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60183bf6a6511df4fa1ebf7ce77a8840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlInputAnimation: {fileID: 0}
-  playerInput: {fileID: 0}
-  playerRigidBody: {fileID: 0}
-  moveSpeed: 10
-  tr: {fileID: 0}
-  mainCamera: {fileID: 0}
-  moveLevel: 0
-  stop: 0
-  sit: 0
-  run: 0
-  jump: 0
-  DirFix: 0
-  shift_clock: 0
 --- !u!114 &190263465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,6 +721,7 @@ MonoBehaviour:
   PlInput: {fileID: 0}
   sk: {fileID: 0}
   playerAttack: {fileID: 0}
+  playerPerk: {fileID: 0}
   playerMove: {fileID: 0}
   Move: 0
   Jump: 0
@@ -1186,6 +1148,7 @@ MonoBehaviour:
   PlInput: {fileID: 0}
   sk: {fileID: 0}
   playerAttack: {fileID: 0}
+  playerPerk: {fileID: 0}
   playerMove: {fileID: 0}
   Move: 0
   Jump: 0
@@ -1545,6 +1508,7 @@ MonoBehaviour:
   PlInput: {fileID: 0}
   sk: {fileID: 0}
   playerAttack: {fileID: 0}
+  playerPerk: {fileID: 0}
   playerMove: {fileID: 0}
   Move: 0
   Jump: 0
@@ -1615,6 +1579,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb641e8710478e48b757198ae1987a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1226197942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1226197943}
+  - component: {fileID: 1226197944}
+  m_Layer: 0
+  m_Name: ShotPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1226197943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226197942}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 6.940499, y: 10.93497, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1330710389}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1226197944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226197942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonRenderer: {fileID: 1330710386}
+  boneName: bone45
+  followXYPosition: 1
+  followZPosition: 1
+  followBoneRotation: 0
+  followSkeletonFlip: 1
+  followLocalScale: 0
+  maintainedAxisOrientation: 1
+  initializeOnAwake: 1
 --- !u!1 &1330710379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,8 +1647,8 @@ GameObject:
   - component: {fileID: 1330710381}
   - component: {fileID: 1330710380}
   - component: {fileID: 1330710384}
-  - component: {fileID: 1330710383}
   - component: {fileID: 1330710382}
+  - component: {fileID: 1330710383}
   m_Layer: 0
   m_Name: AR
   m_TagString: Untagged
@@ -1721,21 +1737,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1330710379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0109634008da15840b9c2380aaf41b2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4794de4b4a0c4444a931298324cc1036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
-  PlInputAnimation: {fileID: 0}
-  playerMove: {fileID: 0}
-  playerAttackDir: 0
-  shoot: 0
-  stopActionOnOff: 0
-  reloading: 0
-  granadeOn: 0
-  stopActionKind: 0
-  stopActionTimeLimit: 0
-  shootDelay: 0
-  shootDirTime: 0
+  id: 0
+  shotPosition: {fileID: 1226197943}
 --- !u!114 &1330710384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,6 +1757,7 @@ MonoBehaviour:
   PlInput: {fileID: 0}
   sk: {fileID: 0}
   playerAttack: {fileID: 0}
+  playerPerk: {fileID: 0}
   playerMove: {fileID: 0}
   Move: 0
   Jump: 0
@@ -1874,7 +1881,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.83, y: 0.73, z: 0}
   m_LocalScale: {x: 0.3882, y: 0.3882, z: 0.3882}
-  m_Children: []
+  m_Children:
+  - {fileID: 1226197943}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2067,6 +2075,7 @@ MonoBehaviour:
   PlInput: {fileID: 0}
   sk: {fileID: 0}
   playerAttack: {fileID: 0}
+  playerPerk: {fileID: 0}
   playerMove: {fileID: 0}
   Move: 0
   Jump: 0
@@ -2386,6 +2395,7 @@ MonoBehaviour:
   PlInput: {fileID: 0}
   sk: {fileID: 0}
   playerAttack: {fileID: 0}
+  playerPerk: {fileID: 0}
   playerMove: {fileID: 0}
   Move: 0
   Jump: 0
@@ -2882,6 +2892,7 @@ MonoBehaviour:
   PlInput: {fileID: 0}
   sk: {fileID: 0}
   playerAttack: {fileID: 0}
+  playerPerk: {fileID: 0}
   playerMove: {fileID: 0}
   Move: 0
   Jump: 0
@@ -3167,7 +3178,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098992540}
-  - component: {fileID: 2098992539}
   m_Layer: 0
   m_Name: PlayerStatus
   m_TagString: Untagged
@@ -3175,20 +3185,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2098992539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098992538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f21410c3ec135b94b880d7cf5ca20448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stunGuage: 0
-  BurnGuage: 0
 --- !u!4 &2098992540
 Transform:
   m_ObjectHideFlags: 0

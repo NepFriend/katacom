@@ -238,6 +238,10 @@ public class PerkMelee : Perk
         }
     }
 
+    public override void CalculateRecoil()
+    {
+        recoil = 0F;
+    }
 
 
     private IEnumerator CoPlayerWeakAttack() // 플레이어 약공격

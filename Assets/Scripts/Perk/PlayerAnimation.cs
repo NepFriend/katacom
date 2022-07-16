@@ -15,6 +15,7 @@ public class PlayerAnimation : MonoBehaviour
     // Skeleton skeleton;
 
     public PlayerAttack playerAttack;
+    public PlayerPerk playerPerk;
 
     public PlayerMove playerMove;
 
@@ -237,52 +238,52 @@ public class PlayerAnimation : MonoBehaviour
     //}
 
     public virtual void moveMotion()
-    { 
+    {
     }
 
     public virtual void sitChangeMotion()
     {
-       
+
     }
 
     public virtual void runChangeMotion(int moveLevel)
     {
-     
+
     }
 
     public virtual void jumpPl()
     {
-     
+
     }
 
     public virtual void Landing()
     {
-       
-      
+
+
 
     }
 
     public virtual void DamageAfterCare()
     {
-      
+
     }
 
 
     public virtual void MovingAttack(int AttackNum)
     {
 
-     
+
 
     }
 
     public virtual void MovingAttackStop()
     {
-       
+
     }
 
     public virtual void DashAnime()
     {
-     
+
     }
 
     public virtual void DashAnimeDone()
@@ -290,7 +291,7 @@ public class PlayerAnimation : MonoBehaviour
 
     }
 
-    
+
 
 
 
@@ -371,13 +372,13 @@ public class PlayerAnimation : MonoBehaviour
 
     public virtual void Shoot(int dir)
     {// 0 기본사격, 1 대각선, 2 위, 3 조준
-      
+
 
     }
 
     public virtual void ShootReady(int dir)
     {// 0 기본사격, 1 대각선, 2 위, 3 조준
-     
+
     }
 
     public virtual void ShootDone()
@@ -409,12 +410,12 @@ public class PlayerAnimation : MonoBehaviour
     }
     public virtual void granadeStart()
     {
-      
+
     }
 
     public virtual void granadeEnd()
     {
-      
+
 
     }
 

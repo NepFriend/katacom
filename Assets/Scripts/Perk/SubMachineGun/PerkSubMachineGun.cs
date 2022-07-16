@@ -131,6 +131,11 @@ public class PerkSubMachineGun : Perk
         }
     }
 
+    public override void CalculateRecoil()
+    {
+        recoil = 0F;
+    }
+
 
     protected IEnumerator CoStopControllActionTime() // smg만의 컨트롤 키 액션을 위한 코루틴
     {

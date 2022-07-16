@@ -125,4 +125,9 @@ public class PerkSniperRifle : Perk
             playerAnimation.granadeEnd();
         }
     }
+
+    public override void CalculateRecoil()
+    {
+        recoil = 0F;
+    }
 }

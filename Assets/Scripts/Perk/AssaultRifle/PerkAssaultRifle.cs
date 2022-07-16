@@ -6,6 +6,8 @@ public class PerkAssaultRifle : Perk
 {
     private bool modeChange;
 
+    private SmartCoroutine shotCoroutine;
+
     public PerkAssaultRifle()
     {
         playerAttackDir = 0;
@@ -76,14 +78,45 @@ public class PerkAssaultRifle : Perk
 
     public override void DoAttack()
     {
-        if (!shoot) return;
-
         bool burst = !modeChange && Input.GetMouseButtonDown(0);
         bool auto = modeChange && Input.GetMouseButton(0);
 
-        if (auto || burst)
+        Vector3 dir = Quaternion.AngleAxis(recoil, Vector3.forward) * shotPosition.forward;
+        dir.x *= playerInput.moveDir ? 1 : -1;
+        Debug.DrawRay(shotPosition.position, dir * 5F, Color.green);
+        dir.y *= -1;
+        Debug.DrawRay(shotPosition.position, dir * 5F, Color.green);
+
+        if (!auto && !burst) return;
+
+        var data = WeaponDataLoader.Instance.Get(WeaponData.ID.AssaultRifle);
+        bool isAiming = playerAttackDir == AttackDirection.Horizontal;
+        bool isBurst = !modeChange;
+        bool isMoving = Mathf.Abs(playerInput.move) > Mathf.Epsilon;
+
+        var recoilData = data.GetRecoilData(isBurst, isAiming, isMoving);
+
+        recoil = Mathf.Clamp(recoil + recoilData.recoilIncPerSecond * Time.deltaTime, -recoilData.lowerAngle, recoilData.upperAngle);
+
+        shootDelay = 1F / data.shotCountPerSecond;
+
+        if (shotCoroutine == null) shotCoroutine = SmartCoroutine.Create(CoShot);
+        if (shotCoroutine.IsRunning) return;
+
+        shotCoroutine.Start();
+        SmartCoroutine.Create(CoPlayerWidthShoot());
+
+        IEnumerator CoShot()
         {
-            SmartCoroutine.Create(CoPlayerWidthShoot());
+            shoot = false;
+
+            float angle = Random.Range(-recoil, recoil);
+
+            recoil += recoilData.recoilIncPerSecond * Time.deltaTime;
+
+            yield return new WaitForSeconds(shootDelay);
+
+            shoot = true;
         }
     }
 
@@ -91,7 +124,7 @@ public class PerkAssaultRifle : Perk
     {
         if (stopActionOnOff) return;
 
-        //¿Â¿¸, πÈ∫¥¿¸, º”º∫∫Ø∞Ê
+        //Ïû•Ï†Ñ, Î∞±Î≥ëÏ†Ñ, ÏÜçÏÑ±Î≥ÄÍ≤Ω
         if (Input.GetKeyDown(KeyCode.R) && !reloading)
         {
             stopActionKind = 0;
@@ -109,7 +142,7 @@ public class PerkAssaultRifle : Perk
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            //ø¨ªÁ, 3¡°ªÁ
+            // 3Ï†êÏÇ¨
             if (modeChange)
             {
                 modeChange = false;
@@ -132,7 +165,7 @@ public class PerkAssaultRifle : Perk
 
     public override void ThrowGrenade()
     {
-        //ºˆ∑˘≈∫∏∏ ∆Øºˆ«œ∞‘ ø©±‚¥Ÿ «•Ω√
+        //ÏàòÎ•òÌÉÑÎßå ÌäπÏàòÌïòÍ≤å Ïó¨Í∏∞Îã§ ÌëúÏãú
         if (Input.GetKeyDown(KeyCode.G) && playerAttackDir == 0 && !stopActionOnOff && !granadeOn)
         {
             granadeOn = true;
@@ -144,5 +177,20 @@ public class PerkAssaultRifle : Perk
             granadeOn = false;
             playerAnimation.granadeEnd();
         }
+    }
+
+    public override void CalculateRecoil()
+    {
+        if (!shoot) return;
+        if (recoil == 0F) return;
+
+        var data = WeaponDataLoader.Instance.Get(WeaponData.ID.AssaultRifle);
+        bool isAiming = playerAttackDir == AttackDirection.Horizontal;
+        bool isBurst = !modeChange;
+        bool isMoving = Mathf.Abs(playerInput.move) < Mathf.Epsilon;
+
+        var recoilData = data.GetRecoilData(isBurst, isAiming, isMoving);
+
+        recoil = Mathf.Max(0F, recoil - recoilData.recoilDecPerSecond * Time.deltaTime);
     }
 }

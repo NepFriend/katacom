@@ -5,36 +5,47 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWeaponData", menuName = "Weapon/Data")]
 public class WeaponData : ScriptableObject
 {
-    public Weapon.ID ID;
+    public enum ID
+    {
+        AssaultRifle,
+        SubmachineGun,
+
+    }
+    public ID id;
 
     public int magazineSize;
     public int suppliedAmmo;
 
-    // �� ���� �߻� ������ ź��
-    public int shotCount;
+    public int shotCountPerSecond;
+
+
+    [System.Serializable]
+    public struct Recoil
+    {
+        public float upperAngle, lowerAngle;
+        public float recoilIncPerSecond, recoilDecPerSecond;
+    }
+
+    public Recoil hipFireRecoilData, aimingRecoilData, movingRecoilData;
+    public Recoil burstHipFireRecoilData, burstAimingRecoilData, burstMovingRecoilData;
 
     public Vector2 damageRange;
 
-    public Vector2 spreadRange;
-    public AnimationCurve spreadThreshold;
-
-    public float shotDelay;
     public float reloadDelay;
 
-    public void CopyTo(WeaponData data)
+    public Recoil GetRecoilData(bool isBurst, bool isAiming, bool isMoving)
     {
-        data.magazineSize = this.magazineSize;
-        data.suppliedAmmo = this.suppliedAmmo;
-
-        data.shotCount = this.shotCount;
-
-        data.damageRange = this.damageRange;
-
-        data.spreadRange = this.spreadRange;
-
-        data.spreadThreshold = new AnimationCurve(this.spreadThreshold.keys);
-
-        data.shotDelay = this.shotDelay;
-        data.reloadDelay = this.reloadDelay;
+        if (isBurst)
+        {
+            if (isAiming) return burstAimingRecoilData;
+            else if (isMoving) return burstMovingRecoilData;
+            else return burstHipFireRecoilData;
+        }
+        else
+        {
+            if (isAiming) return aimingRecoilData;
+            else if (isMoving) return movingRecoilData;
+            else return hipFireRecoilData;
+        }
     }
 }

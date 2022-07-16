@@ -8,7 +8,7 @@ public class PlayerARAnimation : PlayerAnimation
 {
     bool modeChange;
 
-    //ÃÑ½ò¶§ ´ë°¡¸® Èçµå´Â°Å ¹æÁöÇÒ ´ëÃ¥
+    //ï¿½Ñ½ï¿½ ï¿½ë°¡ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¥
     bool idleChange;
 
     public void Start()
@@ -17,6 +17,7 @@ public class PlayerARAnimation : PlayerAnimation
         PlInput = transform.GetComponent<PlayerInput>();
         playerMove = GetComponent<PlayerMove>();
         playerAttack = GetComponent<PlayerAttack>();
+        playerPerk = GetComponent<PlayerPerk>();
         sk = GetComponent<SkeletonAnimation>();
         //sk.AnimationName = "Idle";
         //sk.Start();
@@ -26,7 +27,7 @@ public class PlayerARAnimation : PlayerAnimation
         Attack = true;
         Dash = false;
 
-        //ÀÚ¼¼ ÃÊ±âÈ­
+        //ï¿½Ú¼ï¿½ ï¿½Ê±ï¿½È­
         // sk.skeleton.ScaleX = -Mathf.Abs(sk.skeleton.ScaleX);
 
         // sk.AnimationState.SetAnimation(1, "Main_Weapon/idle_M", true);
@@ -64,9 +65,9 @@ public class PlayerARAnimation : PlayerAnimation
 
     public override void moveMotion()
     {
-        //ÇÃ·¹ÀÌ¾î ¹æÇâ ¼³Á¤
-        if (playerAttack.playerAttackDir == 0)
-        {//Á¤ÀÚ¼¼ÀÏ¶§
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if ((int)playerPerk.CurrentPerk.PlayerAttackDir == 0)
+        {//ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½Ï¶ï¿½
 
             if (PlInput.moveDir && playerMove.moveLevel != 4 && AttackCount == 0)
             {
@@ -84,7 +85,7 @@ public class PlayerARAnimation : PlayerAnimation
                         sk.AnimationState.SetAnimation(12, "turn_sit", false);
                         sk.AnimationState.AddEmptyAnimation(12, 0.1f, 0.1f);
                     }
-                    else if (!Dash && !playerMove.sit) 
+                    else if (!Dash && !playerMove.sit)
                     {
 
                         sk.AnimationState.SetAnimation(12, "turn", false);
@@ -130,21 +131,21 @@ public class PlayerARAnimation : PlayerAnimation
 
 
 
-        //ÇÃ·¹ÀÌ¾î ÀÌµ¿
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½
         if (PlInput.move != 0f && playerMove.moveLevel < 4 && Move)
-        { //ÀÌµ¿ Áß
+        { //ï¿½Ìµï¿½ ï¿½ï¿½
 
 
             if (moveLevel >= 2)
             {
 
-                //±âº» °È±â ÀÌµ¿
+                //ï¿½âº» ï¿½È±ï¿½ ï¿½Ìµï¿½
                 if (!playerMove.sit)
                 {
-                    if (playerAttack.playerAttackDir == 0)
-                    {//¾øÀ½
+                    if ((int)playerPerk.CurrentPerk.PlayerAttackDir == 0)
+                    {//ï¿½ï¿½ï¿½ï¿½
 
-                       
+
                         if (Dash)
                         {
                             sk.AnimationState.SetAnimation(1, "run", true);
@@ -156,45 +157,45 @@ public class PlayerARAnimation : PlayerAnimation
 
 
                     }
-                    else if (playerAttack.playerAttackDir == 1)
-                    {//´ë°¢¼±
+                    else if ((int)playerPerk.CurrentPerk.PlayerAttackDir == 1)
+                    {//ï¿½ë°¢ï¿½ï¿½
 
                         if (PlInput.move * sk.skeleton.ScaleX > 0)
-                        { // º¸´Â ¹æÇâ°ú ÀÌµ¿¹æÇâÀÌ °°À»°æ¿ì ÀüÁø
+                        { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             sk.AnimationState.SetAnimation(2, "move_f_diagonal", true);
                         }
                         else if (PlInput.move * sk.skeleton.ScaleX < 0)
-                        { // º¸´Â ¹æÇâ°ú ÀÌµ¿¹æÇâÀÌ ´Ù¸¦°æ¿ì ÈÄÁø
+                        { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             sk.AnimationState.SetAnimation(2, "move_b_diagonal", true);
                         }
                     }
-                    else if (playerAttack.playerAttackDir == 2)
-                    {//À§
+                    else if ((int)playerPerk.CurrentPerk.PlayerAttackDir == 2)
+                    {//ï¿½ï¿½
 
                         if (PlInput.move * sk.skeleton.ScaleX > 0)
-                        { // º¸´Â ¹æÇâ°ú ÀÌµ¿¹æÇâÀÌ °°À»°æ¿ì ÀüÁø
+                        { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             sk.AnimationState.SetAnimation(2, "move_f_top", true);
                         }
                         else if (PlInput.move * sk.skeleton.ScaleX < 0)
-                        { // º¸´Â ¹æÇâ°ú ÀÌµ¿¹æÇâÀÌ ´Ù¸¦°æ¿ì ÈÄÁø
+                        { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             sk.AnimationState.SetAnimation(2, "move_b_top", true);
                         }
                     }
-                    else if (playerAttack.playerAttackDir == 3)
-                    {//°¡·ÎÁ¶ÁØ
+                    else if ((int)playerPerk.CurrentPerk.PlayerAttackDir == 3)
+                    {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
                         if (PlInput.move * sk.skeleton.ScaleX > 0)
-                        { // º¸´Â ¹æÇâ°ú ÀÌµ¿¹æÇâÀÌ °°À»°æ¿ì ÀüÁø
+                        { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             sk.AnimationState.SetAnimation(2, "move_f_aiming", true);
                         }
                         else if (PlInput.move * sk.skeleton.ScaleX < 0)
-                        { // º¸´Â ¹æÇâ°ú ÀÌµ¿¹æÇâÀÌ ´Ù¸¦°æ¿ì ÈÄÁø
+                        { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             sk.AnimationState.SetAnimation(2, "move_b_aiming", true);
                         }
                     }
                     else
                     {
-                        Debug.Log(playerAttack.playerAttackDir);
+                        Debug.Log((int)playerPerk.CurrentPerk.PlayerAttackDir);
                     }
 
 
@@ -218,7 +219,7 @@ public class PlayerARAnimation : PlayerAnimation
             sk.AnimationState.AddEmptyAnimation(2, 0, 0.3f);
             if (!playerMove.sit)
             {
-                AttackCount = playerAttack.playerAttackDir;
+                AttackCount = (int)playerPerk.CurrentPerk.PlayerAttackDir;
 
                 if (AttackCount == 0)
                 {
@@ -361,14 +362,14 @@ public class PlayerARAnimation : PlayerAnimation
         //}
         if (PlInput.move == 0f)
         {
-            Debug.Log("Á¤Áö");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½");
             Move = true;
             moveLevel = 2;
             sk.AnimationState.AddAnimation(1, "idle", true, 0f);
         }
         else
         {
-            Debug.Log("ÀÌµ¿");
+            Debug.Log("ï¿½Ìµï¿½");
             Move = false;
             moveLevel = 2;
             if (Dash)
@@ -436,7 +437,7 @@ public class PlayerARAnimation : PlayerAnimation
 
     public override void DashAnime()
     {
-        //¹ö±× ÇÈ½º ½ºÆäÀÌ½º È¦µåÇÒ°æ¿ì ¹æÇâÀüÈ¯ ºÒ°¡´ÉÇÑ ¹®Á¦ ´ëÃ¼
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½È½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ È¦ï¿½ï¿½ï¿½Ò°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¯ ï¿½Ò°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
         if (PlInput.moveDir)
         {
             sk.skeleton.ScaleX = Mathf.Abs(sk.skeleton.ScaleX);
@@ -478,7 +479,7 @@ public class PlayerARAnimation : PlayerAnimation
     //{
     //    // mousePos = Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
 
-    //    //ÀÌµ¿»ç°Ý ÀüÅõ Áß ¸¶¿ì½º°¡ ÇÃ·¹ÀÌ¾î XÃàÀ» ¶Õ°í ¹Ý´ë·Î ÀÌµ¿ÇßÀ» °æ¿ì
+    //    //ï¿½Ìµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Xï¿½ï¿½ï¿½ï¿½ ï¿½Õ°ï¿½ ï¿½Ý´ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     //    //if (Input.mousePosition.x > transform.position.x)
     //    //{
     //    //    Debug.Log("dsfsdfdsfsfdsfs");
@@ -529,7 +530,7 @@ public class PlayerARAnimation : PlayerAnimation
     public void RunAnimationClear()
     {
         //switch (AttackCount)
-        //{ //ÀÌµ¿Áß »ç°ÝÀÚ¼¼¸¦ ¿ëÀÌÇÏ°Ô ¹Ù²Ù±â À§ÇÑ ÄÚµå
+        //{ //ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ù²Ù±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 
         //    case 0:
         //        sk.AnimationState.SetAnimation(1, "Run_Shoot", true);
@@ -549,7 +550,7 @@ public class PlayerARAnimation : PlayerAnimation
     }
 
     public override void Shoot(int dir)
-    {// 0 ±âº»»ç°Ý, 1 ´ë°¢¼±, 2 À§, 3 Á¶ÁØ
+    {// 0 ï¿½âº»ï¿½ï¿½ï¿½, 1 ï¿½ë°¢ï¿½ï¿½, 2 ï¿½ï¿½, 3 ï¿½ï¿½ï¿½ï¿½
 
         //if (idleChange)
         //{
@@ -662,7 +663,7 @@ public class PlayerARAnimation : PlayerAnimation
     }
 
     public override void ShootReady(int dir)
-    {// 0 ±âº»»ç°Ý, 1 ´ë°¢¼±, 2 À§, 3 Á¶ÁØ
+    {// 0 ï¿½âº»ï¿½ï¿½ï¿½, 1 ï¿½ë°¢ï¿½ï¿½, 2 ï¿½ï¿½, 3 ï¿½ï¿½ï¿½ï¿½
         AttackCount = dir;
         if (PlInput.move == 0f)
         {
@@ -762,7 +763,7 @@ public class PlayerARAnimation : PlayerAnimation
     {
 
 
-        //ÀåÀü,  ¹éº´Àü, ¼Ó¼ºº¯°æ
+        //ï¿½ï¿½ï¿½ï¿½,  ï¿½éº´ï¿½ï¿½, ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
         if (kind == 0)
         {
             sk.AnimationState.SetEmptyAnimation(2, 0.1f);
@@ -791,7 +792,7 @@ public class PlayerARAnimation : PlayerAnimation
     {
 
 
-        //ÀåÀü,  ¹éº´Àü, ¼Ó¼ºº¯°æ
+        //ï¿½ï¿½ï¿½ï¿½,  ï¿½éº´ï¿½ï¿½, ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
         if (kind == 0)
         {
             sk.AnimationState.SetEmptyAnimation(2, 0.1f);
@@ -840,25 +841,25 @@ public class PlayerARAnimation : PlayerAnimation
     }
 
     public override void getDamage(int type, bool leftRight)
-    {//µ¥¹ÌÁö Å¸ÀÔ°ú ÁÂ¿ì±¸º° (ÁÂ°¡ 0)
+    {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ô°ï¿½ ï¿½Â¿ì±¸ï¿½ï¿½ (ï¿½Â°ï¿½ 0)
         /*
-         ¼Ò¹ÝÀÀ 0
-         ±Ø¼ÒÇÇ°Ý 1
-         ¼ÒÇÇ°Ý 2
-         ÁßÇÇ°Ý 3
-         ´ëÇÇ°Ý 4
-         °øÁßÇÇ°Ý 5 
-         ¼îÅ© 6
-         ½ºÅÏ 7
-         ¹ø 8
-         ¿¡¾îº» 9
-         Æú´Ù¿î 10
+         ï¿½Ò¹ï¿½ï¿½ï¿½ 0
+         ï¿½Ø¼ï¿½ï¿½Ç°ï¿½ 1
+         ï¿½ï¿½ï¿½Ç°ï¿½ 2
+         ï¿½ï¿½ï¿½Ç°ï¿½ 3
+         ï¿½ï¿½ï¿½Ç°ï¿½ 4
+         ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ 5 
+         ï¿½ï¿½Å© 6
+         ï¿½ï¿½ï¿½ï¿½ 7
+         ï¿½ï¿½ 8
+         ï¿½ï¿½ï¿½îº» 9
+         ï¿½ï¿½ï¿½Ù¿ï¿½ 10
          */
 
         //Status.Instance.Damaged(10);   Status.Instance.StunGuageIncrease(30);  Status.Instance.BurnGuageIncrease(30);
 
         if (type == 0)
-        { // ¿òÂñ 
+        { // ï¿½ï¿½ï¿½ï¿½ 
 
             sk.AnimationState.SetAnimation(13, "dmg_no", false);
             sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
@@ -869,7 +870,7 @@ public class PlayerARAnimation : PlayerAnimation
             //sk.AnimationState.SetEmptyAnimations(0.1f);
             sk.AnimationState.SetAnimation(13, "dmg_shock", false);
             sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
-            //¹Ð¸®´Â ¸é¿ª
+            //ï¿½Ð¸ï¿½ï¿½ï¿½ ï¿½é¿ª
 
         }
         else if (type == 7)
@@ -892,7 +893,7 @@ public class PlayerARAnimation : PlayerAnimation
             sk.AnimationState.SetAnimation(13, "dmg_airborn", false);
             sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
 
-            //¿©±â±îÁö ¹æÇâ »ó°ü¾ø´Â ÇÇ°Ý
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½
         }
         else if (type == 10)
         {
@@ -900,17 +901,17 @@ public class PlayerARAnimation : PlayerAnimation
             sk.AnimationState.SetAnimation(13, "dmg_falldown", false);
             sk.AnimationState.AddEmptyAnimation(13, 0.1f, 0.4f);
 
-            //¿©±â±îÁö ¹æÇâ »ó°ü¾ø´Â ÇÇ°Ý
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½
         }
         else
         {
-            // ÀÌÈÄ·Î´Â ¹æÇâ »ó°üÀÖ´Â ÇÇ°Ý
+            // ï¿½ï¿½ï¿½Ä·Î´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ç°ï¿½
             if (sk.skeleton.ScaleX > 0 && leftRight || sk.skeleton.ScaleX < 0 && !leftRight)
             {
                 if (type == 1)
                 {
                     //sk.AnimationState.SetEmptyAnimations(0.1f);
-                   // sk.AnimationState.SetEmptyAnimation(13, 0.1f);
+                    // sk.AnimationState.SetEmptyAnimation(13, 0.1f);
                     sk.AnimationState.SetAnimation(13, "dmg_f_veryweak", false);
                     sk.AnimationState.AddEmptyAnimation(13, 0, 0.7f);
 
@@ -947,7 +948,7 @@ public class PlayerARAnimation : PlayerAnimation
             {
                 if (type == 1)
                 {
-                   // sk.AnimationState.SetEmptyAnimations(0.1f);
+                    // sk.AnimationState.SetEmptyAnimations(0.1f);
                     sk.AnimationState.SetAnimation(13, "dmg_b_veryweak", false);
                     sk.AnimationState.AddEmptyAnimation(13, 0.01f, 0.4f);
 
@@ -981,16 +982,16 @@ public class PlayerARAnimation : PlayerAnimation
                 }
             }
 
-          
+
         }
 
 
-       
+
 
     }
 
 
-    //¿©±â¼­ºÎÅÍ´Â Å¬·¡½º·Î ´õ ³ªÀº ¹æ¹ý Ã£±â Àü ÀÓ½Ã·Î ´Ù´Â ¾Ö´Ï¸ÞÀÌ¼Ç ¸ðÀ½
-    //°¢ ÆÛÅ©¸¶´Ù µé¾î°¡´Â ¾Ö´Ï¸ÞÀÌ¼Ç°ú ¾Æ´Ñ°ÍÀÌ ÀÖ¾î ±¸ºÐÁþ°í, ±³Ã¼°¡ ¿ëÀÌÇÏ°Ô µÇ±â À§ÇÔ
+    //ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ï¿½Í´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½Ù´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼Ç°ï¿½ ï¿½Æ´Ñ°ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ç±ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 }

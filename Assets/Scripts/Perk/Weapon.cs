@@ -12,7 +12,7 @@ public abstract class Weapon
         SniperRifle2 = 20001
     }
 
-    public ID id;
+    public WeaponData.ID id;
     public int slotIndex;
 
     public int CurrentAmmo { get; protected set; }
@@ -30,7 +30,7 @@ public abstract class Weapon
     public bool IsReloading => reloadTrigger;
 
 
-    public Weapon(int slotIndex, ID id)
+    public Weapon(int slotIndex, WeaponData.ID id)
     {
         this.slotIndex = slotIndex;
         this.id = id;

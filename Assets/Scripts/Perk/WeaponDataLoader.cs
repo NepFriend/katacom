@@ -13,7 +13,7 @@ public class WeaponDataLoader
 
     private bool isInitialized = false;
 
-    private Dictionary<Weapon.ID, WeaponData> dataDictionary = new Dictionary<Weapon.ID, WeaponData>();
+    private Dictionary<WeaponData.ID, WeaponData> dataDictionary = new Dictionary<WeaponData.ID, WeaponData>();
 
 
     public void Initialize()
@@ -24,11 +24,11 @@ public class WeaponDataLoader
         var data = Resources.LoadAll<WeaponData>("ScriptableObjects/WeaponData");
         for (int i = 0; i < data.Length; ++i)
         {
-            dataDictionary.Add(data[i].ID, data[i]);
+            dataDictionary.Add(data[i].id, data[i]);
         }
     }
 
-    public WeaponData Get(Weapon.ID id)
+    public WeaponData Get(WeaponData.ID id)
     {
         if (!dataDictionary.TryGetValue(id, out var data))
         {

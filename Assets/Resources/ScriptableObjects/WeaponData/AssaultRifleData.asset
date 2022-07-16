@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b4918cac96406469d23439b28c9b45, type: 3}
+  m_Name: AssaultRifleData
+  m_EditorClassIdentifier: 
+  id: 0
+  magazineSize: 25
+  suppliedAmmo: 500
+  shotCountPerSecond: 7
+  hipFireRecoilData:
+    upperAngle: 15
+    lowerAngle: 15
+    recoilIncPerSecond: 16.67
+    recoilDecPerSecond: 33.33
+  aimingRecoilData:
+    upperAngle: 10
+    lowerAngle: 10
+    recoilIncPerSecond: 10
+    recoilDecPerSecond: 33.33
+  movingRecoilData:
+    upperAngle: 30
+    lowerAngle: 30
+    recoilIncPerSecond: 33.33
+    recoilDecPerSecond: 33.33
+  burstHipFireRecoilData:
+    upperAngle: -5
+    lowerAngle: 0
+    recoilIncPerSecond: 16.67
+    recoilDecPerSecond: 33.33
+  burstAimingRecoilData:
+    upperAngle: 5
+    lowerAngle: 5
+    recoilIncPerSecond: 10
+    recoilDecPerSecond: 33.33
+  burstMovingRecoilData:
+    upperAngle: 15
+    lowerAngle: 15
+    recoilIncPerSecond: 33.33
+    recoilDecPerSecond: 33.33
+  damageRange: {x: 1, y: 2}
+  reloadDelay: 1

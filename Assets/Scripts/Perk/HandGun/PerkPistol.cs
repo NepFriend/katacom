@@ -141,6 +141,11 @@ public class PerkPistol : Perk
         }
     }
 
+    public override void CalculateRecoil()
+    {
+        recoil = 0F;
+    }
+
 
     protected override IEnumerator CoPlayerWidthShoot()
     {

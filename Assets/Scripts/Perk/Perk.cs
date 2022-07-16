@@ -5,6 +5,23 @@ using UnityEngine;
 
 public abstract class Perk
 {
+    public static Perk Create(PerkID id)
+    {
+        switch (id)
+        {
+            case PerkID.AssaultRifle:
+                return new PerkAssaultRifle();
+        }
+
+        return null;
+    }
+
+    public enum PerkID
+    {
+        AssaultRifle,
+        SubmachineGun
+    }
+
     public enum AttackDirection
     {
         Default,
@@ -21,9 +38,16 @@ public abstract class Perk
     protected PlayerAnimation playerAnimation;
     protected PlayerMove playerMove;
 
+    protected Transform shotPosition;
+    public void SetShotPosition(Transform shotPosition)
+    {
+        this.shotPosition = shotPosition;
+    }
+
     //사격 방향
     // 0 기본사격, 1 대각선, 2 위, 3 가로조준, 4 아래 보기
     protected AttackDirection playerAttackDir;
+    public AttackDirection PlayerAttackDir => playerAttackDir;
 
     protected bool shoot;
 
@@ -40,6 +64,8 @@ public abstract class Perk
     protected float shootDelay;
     protected float shootDirTime;
 
+    protected float recoil = 0F;
+
 
     public abstract void OnEquiped();
     public abstract void OnUnequiped();
@@ -53,6 +79,8 @@ public abstract class Perk
         MoveAction();
 
         ThrowGrenade();
+
+        CalculateRecoil();
     }
 
 
@@ -66,11 +94,12 @@ public abstract class Perk
 
     public abstract void ThrowGrenade();
 
+    public abstract void CalculateRecoil();
 
 
     protected virtual IEnumerator CoPlayerWidthShoot()
     {
-        shoot = false;
+        //shoot = false;
 
         // playerAnimation.DamagedAnime();
         playerAnimation.Shoot((int)playerAttackDir);
@@ -78,7 +107,7 @@ public abstract class Perk
         //공중에서의 샷건은 쏘고 특수모션을 준비해야 한다
         yield return new WaitForSeconds(shootDelay);
 
-        shoot = true;
+        //shoot = true;
     }
 
     protected virtual IEnumerator CoStopActionTime()
@@ -106,51 +135,5 @@ public abstract class Perk
         playerAnimation.StopActionDone();
 
         reloading = false;
-    }
-}
-
-public abstract class Perk2
-{
-    protected virtual Dictionary<Weapon.ID, Weapon> weapons { get; }
-    public Weapon CurrentWeapon { get; protected set; }
-
-    protected Passive[] passives;
-
-    public abstract void OnEquiped();
-    public abstract void OnUnequiped();
-
-    public void EquipWeapon(Weapon.ID id)
-    {
-        if (!weapons.TryGetValue(id, out var weapon))
-        {
-            return;
-        }
-
-        CurrentWeapon = weapon;
-    }
-    public void EquipWeapon(int slot)
-    {
-        foreach (var weapon in weapons)
-        {
-            if (weapon.Value.slotIndex != slot) continue;
-            CurrentWeapon = weapon.Value;
-            return;
-        }
-    }
-
-    public void Use(GameObject self)
-    {
-        CurrentWeapon?.AttackLogic(self);
-    }
-
-    public abstract void Update(float dt);
-
-    public void Update2(float dt)
-    {
-        if (ReferenceEquals(CurrentWeapon, null)) EquipWeapon(0);
-        foreach (var weapon in weapons)
-        {
-            weapon.Value.OnUpdate(dt);
-        }
     }
 }
