@@ -108,15 +108,19 @@ public class PerkAssaultRifle : Perk
 
         IEnumerator CoShot()
         {
-            shoot = false;
-
             float angle = Random.Range(-recoil, recoil);
+
+            var bullet = PoolManager.Instance.Get("DummyBullet") as Bullet;
+            bullet.transform.position = shotPosition.position;
+            bullet.transform.rotation = Quaternion.Euler(0F, 0F, -angle);
+            bullet.transform.localScale = new Vector3(playerInput.moveDir ? 1 : -1, 1F, 1F);
+            Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * shotPosition.forward;
+            dir.x *= playerInput.moveDir ? 1 : -1;
+            bullet.Launch(dir);
 
             recoil += recoilData.recoilIncPerSecond * Time.deltaTime;
 
             yield return new WaitForSeconds(shootDelay);
-
-            shoot = true;
         }
     }
 

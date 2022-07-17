@@ -99,7 +99,7 @@ public abstract class Perk
 
     protected virtual IEnumerator CoPlayerWidthShoot()
     {
-        //shoot = false;
+        shoot = false;
 
         // playerAnimation.DamagedAnime();
         playerAnimation.Shoot((int)playerAttackDir);
@@ -107,7 +107,7 @@ public abstract class Perk
         //공중에서의 샷건은 쏘고 특수모션을 준비해야 한다
         yield return new WaitForSeconds(shootDelay);
 
-        //shoot = true;
+        shoot = true;
     }
 
     protected virtual IEnumerator CoStopActionTime()
